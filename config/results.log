@@ -1,0 +1,131 @@
+2023-09-15 07:08:09,616 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7007
+ * Running on http://172.21.32.179:7007
+2023-09-15 07:08:09,616 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-15 07:08:09,620 - INFO -  * Restarting with watchdog (inotify)
+2023-09-15 07:08:09,771 - WARNING -  * Debugger is active!
+2023-09-15 07:08:09,771 - INFO -  * Debugger PIN: 347-709-217
+2023-09-15 07:08:17,298 - INFO - 172.21.24.75 - - [15/Sep/2023 07:08:17] "GET / HTTP/1.1" 200 -
+2023-09-15 07:08:25,487 - INFO - 172.21.24.75 - - [15/Sep/2023 07:08:25] "POST / HTTP/1.1" 200 -
+2023-09-15 07:08:33,070 - INFO - Email: ginie66@hotmail.coim, Code: KINGDOMSWAMP0143, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:08:41,605 - INFO - Email: tom@hippo.com, Code: KINGDOMSWAMP0143, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:08:50,152 - INFO - Email: tom@hippo.com.au, Code: KINGDOMSWAMP0143, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:08:58,764 - INFO - Email: jack@fistmail.com, Code: KINGDOMSWAMP0143, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:08:58,766 - INFO - 172.21.24.75 - - [15/Sep/2023 07:08:58] "POST / HTTP/1.1" 200 -
+2023-09-15 07:09:59,641 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7007
+ * Running on http://172.21.32.179:7007
+2023-09-15 07:09:59,641 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-15 07:09:59,645 - INFO -  * Restarting with watchdog (inotify)
+2023-09-15 07:09:59,795 - WARNING -  * Debugger is active!
+2023-09-15 07:09:59,795 - INFO -  * Debugger PIN: 347-709-217
+2023-09-15 07:11:17,144 - INFO - Email: ginie66@hotmail.coim, Code: KINGDOMSWAMP0100, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:11:25,715 - INFO - Email: tom@hippo.com, Code: KINGDOMSWAMP0100, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:11:34,738 - INFO - Email: tom@hippo.com.au, Code: KINGDOMSWAMP0100, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:24:03,036 - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/ws-admin/myapp/Cookie/app.py", line 153, in index
+    return render_template('index.html', cookie_data=cookie_data, error_message=error_message, submission_results=submission_results)
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/flask/templating.py", line 151, in render_template
+    return _render(app, template, context)
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/flask/templating.py", line 132, in _render
+    rv = template.render(context)
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ws-admin/myapp/Cookie/templates/index.html", line 41, in top-level template code
+    <iframe src="{{ url_for('log_results') }}"></iframe>
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/flask/app.py", line 1697, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/flask/app.py", line 1686, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/home/ws-admin/.local/lib/python3.10/site-packages/werkzeug/routing/map.py", line 947, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'log_results'. Did you mean 'logout' instead?
+2023-09-15 07:24:14,037 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7007
+ * Running on http://172.21.32.179:7007
+2023-09-15 07:24:14,037 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-15 07:24:14,041 - INFO -  * Restarting with watchdog (inotify)
+2023-09-15 07:24:14,192 - WARNING -  * Debugger is active!
+2023-09-15 07:24:14,192 - INFO -  * Debugger PIN: 347-709-217
+2023-09-15 07:24:17,475 - INFO - 172.21.24.75 - - [15/Sep/2023 07:24:17] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2023-09-15 07:24:17,516 - INFO - 172.21.24.75 - - [15/Sep/2023 07:24:17] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-15 07:24:17,516 - INFO - 172.21.24.75 - - [15/Sep/2023 07:24:17] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-15 07:24:17,660 - INFO - 172.21.24.75 - - [15/Sep/2023 07:24:17] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-15 07:24:17,721 - INFO - 172.21.24.75 - - [15/Sep/2023 07:24:17] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-15 07:26:08,075 - INFO - Email: ginie66@hotmail.coim, Code: TK2PO5GA87DBJA33, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:26:17,957 - INFO - Email: tom@hippo.com, Code: TK2PO5GA87DBJA33, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:26:26,597 - INFO - Email: tom@hippo.com.au, Code: TK2PO5GA87DBJA33, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:27:02,038 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7007
+ * Running on http://172.21.32.179:7007
+2023-09-15 07:27:02,038 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-15 07:27:02,042 - INFO -  * Restarting with watchdog (inotify)
+2023-09-15 07:27:02,194 - WARNING -  * Debugger is active!
+2023-09-15 07:27:02,195 - INFO -  * Debugger PIN: 347-709-217
+2023-09-15 07:27:05,065 - INFO - 172.21.24.75 - - [15/Sep/2023 07:27:05] "GET / HTTP/1.1" 200 -
+2023-09-15 07:27:05,127 - INFO - 172.21.24.75 - - [15/Sep/2023 07:27:05] "GET /log_results HTTP/1.1" 200 -
+2023-09-15 07:27:19,665 - INFO - Email: ginie66@hotmail.coim, Code: KINGDOMSWAMP023, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:27:28,104 - INFO - Email: tom@hippo.com, Code: KINGDOMSWAMP023, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:27:36,578 - INFO - Email: tom@hippo.com.au, Code: KINGDOMSWAMP023, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:27:44,887 - INFO - Email: jack@fistmail.com, Code: KINGDOMSWAMP023, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:27:44,889 - INFO - 172.21.24.75 - - [15/Sep/2023 07:27:44] "POST / HTTP/1.1" 200 -
+2023-09-15 07:27:44,983 - INFO - 172.21.24.75 - - [15/Sep/2023 07:27:44] "GET /log_results HTTP/1.1" 200 -
+2023-09-15 07:29:55,875 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7007
+ * Running on http://172.21.32.179:7007
+2023-09-15 07:29:55,875 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-15 07:29:55,880 - INFO -  * Restarting with watchdog (inotify)
+2023-09-15 07:29:56,031 - WARNING -  * Debugger is active!
+2023-09-15 07:29:56,031 - INFO -  * Debugger PIN: 347-709-217
+2023-09-15 07:31:23,877 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7007
+ * Running on http://172.21.32.179:7007
+2023-09-15 07:31:23,877 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-15 07:31:23,881 - INFO -  * Restarting with watchdog (inotify)
+2023-09-15 07:31:24,033 - WARNING -  * Debugger is active!
+2023-09-15 07:31:24,033 - INFO -  * Debugger PIN: 347-709-217
+2023-09-15 07:31:25,333 - INFO - 172.21.24.75 - - [15/Sep/2023 07:31:25] "GET /sse_log HTTP/1.1" 200 -
+2023-09-15 07:31:28,360 - INFO - 172.21.24.75 - - [15/Sep/2023 07:31:28] "GET /sse_log HTTP/1.1" 200 -
+2023-09-15 07:31:30,795 - INFO - 172.21.24.75 - - [15/Sep/2023 07:31:30] "GET / HTTP/1.1" 200 -
+2023-09-15 07:31:30,838 - INFO - 172.21.24.75 - - [15/Sep/2023 07:31:30] "GET /log_results HTTP/1.1" 200 -
+2023-09-15 07:31:30,875 - INFO - 172.21.24.75 - - [15/Sep/2023 07:31:30] "GET /sse_log HTTP/1.1" 200 -
+2023-09-15 07:31:33,906 - INFO - 172.21.24.75 - - [15/Sep/2023 07:31:33] "GET /sse_log HTTP/1.1" 200 -
+2023-09-15 07:32:01,744 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7007
+ * Running on http://172.21.32.179:7007
+2023-09-15 07:32:01,744 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-15 07:32:01,748 - INFO -  * Restarting with watchdog (inotify)
+2023-09-15 07:32:01,916 - WARNING -  * Debugger is active!
+2023-09-15 07:32:01,916 - INFO -  * Debugger PIN: 347-709-217
+2023-09-15 07:32:02,301 - INFO - 172.21.24.75 - - [15/Sep/2023 07:32:02] "GET /sse_log HTTP/1.1" 200 -
+2023-09-15 07:32:04,565 - INFO - 172.21.24.75 - - [15/Sep/2023 07:32:04] "GET / HTTP/1.1" 200 -
+2023-09-15 07:32:04,602 - INFO - 172.21.24.75 - - [15/Sep/2023 07:32:04] "GET /log_results HTTP/1.1" 200 -
+2023-09-15 07:32:04,635 - INFO - 172.21.24.75 - - [15/Sep/2023 07:32:04] "GET /sse_log HTTP/1.1" 200 -
+2023-09-15 07:32:27,288 - INFO - Email: ginie66@hotmail.coim, Code: QWERTYUIOPASLFFF, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:32:35,620 - INFO - Email: tom@hippo.com, Code: QWERTYUIOPASLFFF, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:32:43,897 - INFO - Email: tom@hippo.com.au, Code: QWERTYUIOPASLFFF, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:32:52,357 - INFO - Email: jack@fistmail.com, Code: QWERTYUIOPASLFFF, Alert Text: Please check the coupon code!, Result: Please check the coupon code!
+2023-09-15 07:32:52,360 - INFO - 172.21.24.75 - - [15/Sep/2023 07:32:52] "POST / HTTP/1.1" 200 -
+2023-09-15 07:32:52,434 - INFO - 172.21.24.75 - - [15/Sep/2023 07:32:52] "GET /log_results HTTP/1.1" 200 -
+2023-09-15 07:32:52,464 - INFO - 172.21.24.75 - - [15/Sep/2023 07:32:52] "GET /sse_log HTTP/1.1" 200 -
+2023-09-15 07:33:10,704 - INFO - 172.21.24.75 - - [15/Sep/2023 07:33:10] "GET / HTTP/1.1" 200 -
+2023-09-15 07:33:10,749 - INFO - 172.21.24.75 - - [15/Sep/2023 07:33:10] "GET /log_results HTTP/1.1" 200 -
+2023-09-15 07:33:10,785 - INFO - 172.21.24.75 - - [15/Sep/2023 07:33:10] "GET /sse_log HTTP/1.1" 200 -

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+    <style>
+        /* Add some basic CSS for the top right link */
+        .top-right-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add User</h1>
+
+    <!-- Display flash messages if they exist -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message[1]|safe }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label for="email">Email:</label>
+        <input type="text" name="email" required>
+        <br>
+        <input type="submit" value="Add">
+    </form>
+
+    <!-- Link to the home page -->
+    <a class="top-right-link" href="/">Home</a>
+
+    <!-- Display user data here -->
+    <ul>
+        {% for user in user_data %}
+            <li>{{ user.email }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

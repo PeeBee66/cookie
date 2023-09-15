@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Results</title>
+</head>
+<body>
+    <h1>Log Results</h1>
+    <pre id="log-content"></pre>
+
+    <script>
+        const logContent = document.getElementById('log-content');
+
+        const eventSource = new EventSource("/sse_log");
+
+        eventSource.onmessage = function(event) {
+            // Append the new log content to the existing content
+            logContent.textContent += event.data;
+        };
+    </script>
+</body>
+</html>
