@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  Cookierush:
+    image: peebee66/cookierush:0.1
+    ports:
+      - "7007:7007"
+    restart: unless-stopped
+    volumes:
+      - /opt/cookie/config:/app/config
+      #CookieRush123

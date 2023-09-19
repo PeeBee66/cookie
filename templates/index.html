@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <title>Cookie Data</title>
     <style>
+        /* Define the font-family for the entire body */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Define a flex container for the two columns */
+        .container {
+            display: flex;
+        }
+
+        /* Style the left column */
+        .left-column {
+            flex: 1; /* Make the left column grow to fill available space */
+            padding: 20px;
+        }
+
+        /* Style the right column */
+        .right-column {
+            flex-basis: 30%; /* Set a fixed width for the right column */
+            padding: 20px;
+            background-color: #f2f2f2; /* Add a background color to the right column */
+        }
+
         /* Add some basic CSS for the top right link */
         .top-right-link {
             position: absolute;
@@ -11,39 +34,115 @@
             right: 10px;
         }
 
-        /* Style the iframe to fit within the page */
-        iframe {
-            width: 100%;
-            height: 500px; /* Adjust the height as needed */
-            border: none; /* Remove iframe border */
+        /* Style for flash messages */
+        .flash-messages {
+            margin-top: 20px;
+        }
+
+        .alert {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            background-color: #f2f2f2;
+        }
+
+        .alert-success {
+            border-color: #4CAF50;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Style for the heading image */
+        .heading-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Style for the heading and link container */
+        .heading-container {
+            position: relative;
+            text-align: center;
+        }
+
+        /* Style for the "Add User" link */
+        .add-user-link {
+            display: block;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Cookie Data</h1>
-    <!-- Add the link to the Add User page in the top right -->
-    <a class="top-right-link" href="{{ url_for('add_user') }}">Add User</a>
+    <!-- Create a container for the heading image and link -->
+    <div class="heading-container">
+        <!-- Add the image as the heading -->
+        <img src="static/Heading.png" alt="Heading" class="heading-image">
 
-    <form method="POST">
-        <label for="email">Enter a Code:</label>
-        <input type="text" name="email" required>
-        <button type="submit">Submit</button>
-    </form>
-
-    <h2>Cookie Codes:</h2>
-    <ul>
-        {% for code_dict in cookie_data %}
-            <li>{{ code_dict['code'] }}</li>
-        {% endfor %}
-    </ul>
-
-    <!-- Add the iframe to display logresults.html -->
-    <iframe src="{{ url_for('log_results') }}"></iframe>
-
-    {% if error_message %}
-    <div class="error">
-        {{ error_message }}
+        <!-- Add the link to the Add User page under the heading image -->
+        <a class="add-user-link" href="{{ url_for('add_user') }}">Add User</a>
     </div>
-    {% endif %}
+
+    <!-- Add a div to display the flash message -->
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-success">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Use a container for the two columns -->
+    <div class="container">
+        <!-- Left column -->
+        <div class="left-column">
+<form method="POST">
+    <label for="email">Enter the Cookie Code and click Submit:</label>
+    <input type="text" name="email" required>
+    <button type="submit">Submit</button>
+</form>
+
+<p style="font-size: 12px; color: #777;">
+    Please enter the Cookie Code and click Submit. This process may take 2-3 seconds per email address in the list. Your patience is appreciated.
+</p>
+            <h2>Results</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Code</th>
+                        <th>Alert Text</th> <!-- Add a new column for alert text -->
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in submission_results %}
+                    <tr>
+                        <td>{{ result.email }}</td>
+                        <td>{{ result.code }}</td>
+                        <td>{{ result.alert_text }}</td> <!-- Display alert text here -->
+                        <td>{{ result.result }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% if error_message %}
+            <div class="error">
+                {{ error_message }}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Right column for the cookie codes list -->
+        <div class="right-column">
+            <h2>Used Cookie Codes:</h2>
+            <ul>
+                {% for code_dict in cookie_data %}
+                    <li>{{ code_dict['code'] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

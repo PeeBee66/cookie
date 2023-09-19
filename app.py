@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, Response  # Add Response import
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_session import Session
 import csv
 import hashlib
@@ -6,20 +6,19 @@ import os
 import random
 import string
 import requests
-import subprocess  # Added for running script.py
+import subprocess
 import sys
-import logging  # Added for logging
-import time  # Add time import
+import logging
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Change this to a secure value
+app.secret_key = 'your_secret_key'
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 submission_results = []
 
 # Define the username and hashed password for login
 USERNAME = 'admin'
-HASHED_PASSWORD = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'
+HASHED_PASSWORD = 'ff4f0fce1161d864dc2602e532a51961c70524419da7fde6ff198259a689fc1b'
 
 # Function to read CSV file and return its data as a list of dictionaries
 def read_csv(file_path):
@@ -29,17 +28,6 @@ def read_csv(file_path):
         for row in reader:
             data.append(row)
     return data
-
-@app.route('/sse_log')
-def sse_log():
-    def generate_log_updates():
-        while True:
-            with open('config/results.log', 'r') as log_file:
-                log_content = log_file.read()
-            yield f"data: {log_content}\n\n"
-            time.sleep(1)  # Adjust the refresh interval as needed
-
-    return Response(generate_log_updates(), content_type='text/event-stream')
 
 # Function to write data to a CSV file
 def write_csv(file_path, fieldnames, data):
@@ -55,12 +43,6 @@ ADD_USER_CSV_PATH = 'config/addUser.csv'
 if not os.path.exists(COOKIE_CODES_CSV_PATH):
     with open(COOKIE_CODES_CSV_PATH, 'w', newline='') as csvfile:
         fieldnames = []  # Add column headers if needed
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
-
-if not os.path.exists(ADD_USER_CSV_PATH):
-    with open(ADD_USER_CSV_PATH, 'w', newline='') as csvfile:
-        fieldnames = ['email']  # Specify column headers if needed
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -126,7 +108,6 @@ def run_script(email, code):
         print("Error running script.py:", e)
         return "Error: " + str(e)
 
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     # Read CookieCodes.csv
@@ -164,16 +145,12 @@ def index():
 
     return render_template('index.html', cookie_data=cookie_data, error_message=error_message, submission_results=submission_results)
 
-@app.route('/log_results')
-def log_results():
-    # You can add any logic here that you want to display in logresults.html
-    return render_template('logresults.html')
-
+# Route for the "Add User" page
 @app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
-    if 'username' not in session:
+    # Check if the user is logged in
+    if 'logged_in' not in session or not session['logged_in']:
         return redirect(url_for('login'))
-
     if request.method == 'POST':
         email = request.form.get('email')
         if email:
@@ -193,10 +170,36 @@ def add_user():
 
     return render_template('add_user.html', user_data=user_data)
 
-@app.route('/logout')
+# Route for login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        # Check if the provided username and password are correct
+        if username == USERNAME and hashlib.sha256(password.encode()).hexdigest() == HASHED_PASSWORD:
+            # Set a session variable to indicate that the user is logged in
+            session['logged_in'] = True
+            return redirect(url_for('add_user'))
+        else:
+            flash('Login failed. Please try again.', 'error')
+
+    return render_template('login.html')
+
+# Route for logout
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
-    session.pop('username', None)
+    # Clear the user's session
+    session.pop('logged_in', None)
+
+    if not os.path.exists(ADD_USER_CSV_PATH):
+        with open(ADD_USER_CSV_PATH, 'w', newline='') as csvfile:
+            fieldnames = ['email']  # Specify column headers if needed
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=7007, debug=True)
+    app.run(host='0.0.0.0', port=7007)
